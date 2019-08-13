@@ -1,6 +1,9 @@
+const shortid = require('shortid');
+
 const defaultSensorsData = require('../config/defaultSensorsData');
 
-const createSensorsByType = (type, number) => {
+const createSensorsByType = type => {
+  const id = shortid.generate();
   let data = [];
 
   defaultSensorsData.forEach(arrByTime => {
@@ -13,7 +16,7 @@ const createSensorsByType = (type, number) => {
   });
 
   return {
-    name: `${type} sensor ${number}`,
+    name: `${type} sensor ${id}`,
     type,
     data,
   };
@@ -22,9 +25,9 @@ const createSensorsByType = (type, number) => {
 let sensors = [];
 
 for (let i = 0; i < 5; i++) {
-  const tmpSensor = createSensorsByType('temperature', i);
-  const humSensor = createSensorsByType('humidity', i);
-  const lightSensor = createSensorsByType('light', i);
+  const tmpSensor = createSensorsByType('temperature');
+  const humSensor = createSensorsByType('humidity');
+  const lightSensor = createSensorsByType('light');
 
   sensors = [...sensors, tmpSensor, humSensor, lightSensor];
 }
