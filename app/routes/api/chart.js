@@ -7,9 +7,5 @@ module.exports = app => {
 
       res.send(sensors);
     });
-
-  app.route('/api/sensors/new')
-    .get()
-    .post();
 };
 

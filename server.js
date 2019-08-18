@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
+const cors = require('cors');
 
 const config = require('./config/');
 
@@ -15,8 +16,6 @@ mongoose.connect(config.db('localhost', 27017, 'test-charts'), {
 
 mongoose.connection.on('open', () => {
   console.log('Connected to mongo server.');
-
-  mongoose.disconnect();
 });
 
 mongoose.connection.on('error', err => {
@@ -26,17 +25,7 @@ mongoose.connection.on('error', err => {
 const app = express();
 
 // Handle CORS requests
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  if (req.method === 'OPTIONS') {
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-    );
-    res.header('Access-Control-Request-Method', 'GET, POST, PUT, DELETE');
-  }
-  next();
-});
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
