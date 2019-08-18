@@ -1,14 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const fs = require('fs');
 
-const getAllSensors = require('../controllers/sensorsController');
-
-router.route('/sensorsData')
-  .get(async (req, res) => {
-    const sensors = await getAllSensors();
-
-    res.send(sensors);
+module.exports = app => {
+  fs.readdirSync(__dirname + '/api').forEach(file => {
+    require(`./api/${file.substr(0, file.indexOf('.'))}`)(app);
   })
-  .post();
-
-module.exports = { router };
+};
