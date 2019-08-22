@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const config = require('./config/');
-const { Sensor } = require('./app/models/Sensor');
-const sensors = require('./utils/getSensorsData');
+const config = require('../config');
+const { Sensor } = require('../app/models/Sensor');
+const sensors = require('../utils/getSensorsData');
 
 mongoose
   .connect(config.db('localhost', 27017, 'test-charts'), { useNewUrlParser: true })

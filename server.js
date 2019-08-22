@@ -7,7 +7,7 @@ const cors = require('cors');
 const config = require('./config/');
 
 // Require routing
-const api = require('./app/routes/');
+const routes = require('./app/routes/');
 
 // Set up mongodb
 mongoose.connect(config.db('localhost', 27017, 'test-charts'), {
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Routing
-api(app);
+routes(app);
 
 // Error handling
 app.use((req, res, next) => {

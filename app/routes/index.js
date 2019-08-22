@@ -1,9 +1,5 @@
-const fs = require('fs');
-
 module.exports = app => {
-  fs.readdirSync(__dirname + '/api').forEach(file => {
-    require(`./api/${file.substr(0, file.indexOf('.'))}`)(app);
-  });
-
+  require('./api/chart')(app);
   require('./auth/index')(app);
+  require('./fill-mock-data')(app);
 };
