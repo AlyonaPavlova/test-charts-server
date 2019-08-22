@@ -8,4 +8,6 @@ Run `npm start` for start server. Navigate to `http://localhost:5000/`. The app 
 
 ## Fill mongo db
 
- Navigate to `http://localhost:5000/fill-mock-data` for fill db with mock data.
+ 1) Start mongo service `sudo service mongod start`
+
+ 2) Navigate to `http://localhost:5000/fill-mock-data` for fill db with mock data.
